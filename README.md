@@ -2,11 +2,16 @@
 
 ## Startup
 
+  0) Install Bundler
+
+  `gem install bundler` 
+
   1) Install Cocoapods
 
   `bundler install`
 
   2) Install Pods
+  
   `pod install`
 
   3) Open Workspace
