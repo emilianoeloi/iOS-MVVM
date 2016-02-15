@@ -8,12 +8,15 @@
 
 #import "PersonViewController.h"
 #import "PersonViewModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface PersonViewController ()
 
 @property (nonatomic, strong) PersonViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *birthDateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *bovespaGraph;
+@property (weak, nonatomic) IBOutlet UIImageView *stockGraph;
 
 @end
 
@@ -23,11 +26,23 @@
     [super viewDidLoad];
     self.nameLabel.text = self.viewModel.nameText;
     self.birthDateLabel.text = self.viewModel.birthDateText;
+    
+    [self loadImages];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)loadImages{
+    
+    NSURL *bovespaGraphUrl = [NSURL URLWithString:@"http://quotes.enfoque.com.br/emacao/graficoibov2.gif"];
+    [self.bovespaGraph sd_setImageWithURL:bovespaGraphUrl];
+    
+    NSURL *stockGraphUrl = [NSURL URLWithString:@"http://quotes.enfoque.com.br:8080/minichartid?ID=petr4"];
+    [self.stockGraph sd_setImageWithURL:stockGraphUrl];
 }
 
 /*
